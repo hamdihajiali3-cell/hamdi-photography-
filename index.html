@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -338,16 +337,29 @@
                     </a>
                 </div>
 
-                <!-- Simple Contact Form placeholder -->
+                <!-- Functional Contact Form -->
                 <div class="bg-dark-900 p-8 rounded-lg border border-dark-700 shadow-xl">
-                    <form onsubmit="event.preventDefault(); alert('شكراً لك! سيتم ربط هذا النموذج لاحقاً عبر PHP أو خدمة مثل Formspree.');">
+                    <form action="https://formsubmit.co/hamdihajiali76@gmail.com" method="POST">
+                        
+                        <!-- إعدادات مخفية للنموذج -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://hamdihajiali3-cell.github.io/">
+                        <input type="hidden" name="_subject" value="طلب جديد من موقع HAMDI PHOTOGRAPHY">
+
                         <div class="mb-4">
                             <label class="block text-gray-400 text-sm mb-2" for="name">الاسم</label>
-                            <input class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors" id="name" type="text" placeholder="الاسم الكريم" required>
+                            <input name="name" class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors" id="name" type="text" placeholder="الاسم الكريم" required>
                         </div>
+
+                        <!-- حقل البريد الإلكتروني الجديد -->
+                        <div class="mb-4">
+                            <label class="block text-gray-400 text-sm mb-2" for="email">البريد الإلكتروني (للتواصل معك)</label>
+                            <input name="email" class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors" id="email" type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        </div>
+
                         <div class="mb-4">
                             <label class="block text-gray-400 text-sm mb-2" for="service">نوع الجلسة</label>
-                            <select class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors" id="service">
+                            <select name="service" class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors" id="service">
                                 <option>تصوير تخرّج</option>
                                 <option>جلسة بورتريه</option>
                                 <option>جلسة تصوير خارجية</option>
@@ -356,7 +368,7 @@
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-400 text-sm mb-2" for="message">الرسالة</label>
-                            <textarea class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors h-32 resize-none" id="message" placeholder="تفاصيل إضافية..."></textarea>
+                            <textarea name="message" class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors h-32 resize-none" id="message" placeholder="تفاصيل إضافية..." required></textarea>
                         </div>
                         <button class="w-full bg-gold-500 hover:bg-gold-400 text-dark-900 font-bold py-3 px-4 rounded transition-colors duration-300" type="submit">
                             إرسال الطلب
@@ -413,4 +425,3 @@
     </script>
 </body>
 </html>
-```
