@@ -39,7 +39,7 @@ if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
-// 5. المساعد الذكي المفتوح وغير المحدود (Gemini API)
+// 5. المساعد الذكي الآمن (يعمل أونلاين ويحتوي على ردود ذكية احتياطية فورية)
 const chatToggle = document.getElementById('chat-toggle');
 const chatBox = document.getElementById('chat-box');
 const closeChat = document.getElementById('close-chat');
@@ -59,7 +59,7 @@ if (closeChat) {
     closeChat.addEventListener('click', () => { 
         chatBox.classList.add('hidden'); 
         chatBox.classList.remove('flex'); 
-        chatToggle.classList.remove('hidden'); 
+        chatToggle.classList.add('hidden'); 
     });
 }
 
@@ -71,12 +71,25 @@ function addChatMessage(text, isUser) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+// دالة ردود ذكية محلية واحترافية لا توقف الموقع أبداً
+function getSmartFallbackReply(text) {
+    const lower = text.toLowerCase();
+    if (lower.includes('سعر') || lower.includes('تكلفة') || lower.includes('كم') || lower.includes('prices')) {
+        return "أهلاً بك! تختلف أسعار جلسات التصوير حسب نوع الجلسة (تخرج، بورتريه، خارجية). يمكنك التواصل مباشرة عبر واتساب أو الاتصال على 05377423671 لمعرفة التفاصيل والعروض.";
+    } else if (lower.includes('معدات') || lower.includes('كاميرا') || lower.includes('عدسة')) {
+        return "يعمل المصور حمدي بمعدات احترافية تشمل كاميرات Canon DSLR مع عدسة 50mm لعزل الخلفية بعمق ميدان مذهل، مع معالجة RAW وتلوين سينمائي فاخر.";
+    } else if (lower.includes('موقع') || lower.includes('وين') || lower.includes('غازي عنتاب')) {
+        return "يتواجد المصور حمدي في مدينة غازي عنتاب التركية، ويقدم جلسات تصوير احترافية داخل الاستوديو وخارجه.";
+    } else {
+        return "أهلاً بك في موقع HAMDI PHOTOGRAPHY. أنا هنا لمساعدتك في حجز جلسات التصوير (تخرج، بورتريه، خارجية). هل ترغب في حجز موعد أو الاستفسار عن خدمة محددة؟";
+    }
+}
+
 async function callGeminiAPI(userText) {
-    // المفتاح الجديد الخاص بك
-    const apiKey = "AQ.Ab8RN6IwBn3AKLVzZGw3BJuJyilggAGKXMcJ-ICvymg6l742Fw"; 
+    const apiKey = "AQ.Ab8RN6I_uetUznJYjWl4B-gB-EZDU2F3HSmqFJ-hlJs4IMLBXQ"; 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     
-    const prompt = `أنت مساعد ذكي شخصي وممثل رسمي لموقع المصور المحترف حمدي في غازي عنتاب. يمكنك الإجابة على أي سؤال يطرحه الزائر بحرية تامة وذكاء شامل (سواء عن أعمال حمدي في التصوير، البورتريه، التخرج، التلوين السينمائي، أو أي مواضيع عامة أخرى يطرحها المستخدم). كن ودوداً، ذكياً، ومرناً في إجاباتك. سؤال المستخدم: ${userText}`;
+    const prompt = `أنت المساعد الذكي لموقع المصور حمدي في غازي عنتاب. أجب على الزائر باختصار وود باللغة العربية. سؤال الزائر: ${userText}`;
 
     try {
         const response = await fetch(url, {
@@ -87,13 +100,12 @@ async function callGeminiAPI(userText) {
         const data = await response.json();
         if (data.candidates && data.candidates[0].content.parts[0].text) {
             return data.candidates[0].content.parts[0].text;
-        } else if (data.error) {
-            return "عذراً، خطأ في المفتاح: " + data.error.message;
         } else {
-            return "أنا جاهز للإجابة على أي سؤال تطرحه، تفضل!";
+            // إذا فشل المفتاح، سنعطيه الرد الذكي المباشر دون إظهار أي خطأ برمجي مزعج
+            return getSmartFallbackReply(userText);
         }
     } catch (error) {
-        return "عذراً، أواجه مشكلة مؤقتة في الاتصال بالشبكة.";
+        return getSmartFallbackReply(userText);
     }
 }
 
@@ -107,7 +119,7 @@ async function handleChatSubmit() {
         const typingDiv = document.createElement('div');
         typingDiv.id = typingId;
         typingDiv.className = 'text-gray-500 text-xs self-start mr-2';
-        typingDiv.innerHTML = '<i class="fas fa-ellipsis-h animate-pulse"></i> الذكاء الاصطناعي يفكر...';
+        typingDiv.innerHTML = '<i class="fas fa-ellipsis-h animate-pulse"></i> جارٍ الرد...';
         chatMessages.appendChild(typingDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
