@@ -73,7 +73,7 @@ function addChatMessage(text, isUser) {
 
 async function callGeminiAPI(userText) {
     // المفتاح الجديد الخاص بك
-    const apiKey = "AQ.Ab8RN6I_uetUznJYjWl4B-gB-EZDU2F3HSmqFJ-hlJs4IMLBXQ"; 
+    const apiKey = "AQ.Ab8RN6IwBn3AKLVzZGw3BJuJyilggAGKXMcJ-ICvymg6l742Fw"; 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     
     const prompt = `أنت مساعد ذكي شخصي وممثل رسمي لموقع المصور المحترف حمدي في غازي عنتاب. يمكنك الإجابة على أي سؤال يطرحه الزائر بحرية تامة وذكاء شامل (سواء عن أعمال حمدي في التصوير، البورتريه، التخرج، التلوين السينمائي، أو أي مواضيع عامة أخرى يطرحها المستخدم). كن ودوداً، ذكياً، ومرناً في إجاباتك. سؤال المستخدم: ${userText}`;
