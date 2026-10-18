@@ -1,4 +1,4 @@
-// إخفا// 1. إخفاء شاشة الترحيب بسلاسة بعد ثانيتين
+// 1. إخفاء شاشة الترحيب بسلاسة بعد ثانيتين
 window.addEventListener('load', () => {
     setTimeout(() => {
         const splash = document.getElementById('splash-screen');
@@ -13,9 +13,9 @@ window.addEventListener('load', () => {
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        navbar.classList.add('scrolled-nav');
+        navbar.classList.add('bg-dark-900', 'bg-opacity-95', 'shadow-lg');
     } else {
-        navbar.classList.remove('scrolled-nav');
+        navbar.classList.remove('bg-dark-900', 'bg-opacity-95', 'shadow-lg');
     }
 });
 
@@ -26,9 +26,20 @@ if (btn && menu) {
     btn.addEventListener('click', () => {
         menu.classList.toggle('hidden');
     });
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.add('hidden');
+        });
+    });
 }
 
-// 4. المساعد الذكي (Chatbot & Gemini API)
+// 4. تحديث سنة التذييل تلقائياً
+const yearSpan = document.getElementById('year');
+if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+}
+
+// 5. المساعد الذكي المفتوح وغير المحدود (Gemini API)
 const chatToggle = document.getElementById('chat-toggle');
 const chatBox = document.getElementById('chat-box');
 const closeChat = document.getElementById('close-chat');
@@ -48,7 +59,7 @@ if (closeChat) {
     closeChat.addEventListener('click', () => { 
         chatBox.classList.add('hidden'); 
         chatBox.classList.remove('flex'); 
-        chatToggle.classList.remove('hidden'); 
+        chatToggle.classList.add('hidden'); 
     });
 }
 
@@ -61,11 +72,11 @@ function addChatMessage(text, isUser) {
 }
 
 async function callGeminiAPI(userText) {
-    // المفتاح الذي أرسلته لي مدمج هنا مباشرة
     const apiKey = "AQ.Ab8RN6K0zI8DQPpAcHM8-yomCMbS0LyoL0__Z7gXxPDKAxYPnQ"; 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     
-    const prompt = `أنت المساعد الذكي لمصور محترف اسمه حمدي في مدينة غازي عنتاب. حمدي يصور بورتريه، تخرج، وجلسات خارجية باستخدام كاميرا كانون 50mm ويقوم بالتلوين السينمائي. أجب على العميل باختصار ولطف. سؤال العميل: ${userText}`;
+    // هنا جعلنا الذكاء الاصطناعي يمثل المصور حمدي ولكنه حر ومفتوح للإجابة على أي سؤال بذكاء واحترافية
+    const prompt = `أنت مساعد ذكي شخصي وممثل رسمي لموقع المصور المحترف حمدي في غازي عنتاب. يمكنك الإجابة على أي سؤال يطرحه الزائر بحرية تامة وذكاء شامل (سواء عن أعمال حمدي في التصوير، البورتريه، التخرج، التلوين السينمائي، أو أي مواضيع عامة أخرى يطرحها المستخدم). كن ودوداً، ذكياً، ومرناً في إجاباتك. سؤال المستخدم: ${userText}`;
 
     try {
         const response = await fetch(url, {
@@ -74,9 +85,15 @@ async function callGeminiAPI(userText) {
             body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
         });
         const data = await response.json();
-        return data.candidates[0].content.parts[0].text;
+        if (data.candidates && data.candidates[0].content.parts[0].text) {
+            return data.candidates[0].content.parts[0].text;
+        } else if (data.error) {
+            return "عذراً، خطأ في المفتاح: " + data.error.message;
+        } else {
+            return "أنا جاهز للإجابة على أي سؤال تطرحه، تفضل!";
+        }
     } catch (error) {
-        return "عذراً، أواجه مشكلة في الاتصال حالياً. يرجى مراسلة حمدي عبر الواتساب مباشرة.";
+        return "عذراً، أواجه مشكلة مؤقتة في الاتصال بالشبكة.";
     }
 }
 
@@ -96,7 +113,8 @@ async function handleChatSubmit() {
 
         const botReply = await callGeminiAPI(text);
         
-        document.getElementById(typingId).remove();
+        const typingElement = document.getElementById(typingId);
+        if (typingElement) typingElement.remove();
         addChatMessage(botReply, false);
     }
 }
@@ -106,7 +124,7 @@ if (sendChat && chatInput) {
     chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleChatSubmit(); });
 }
 
-// 5. نموذج التواصل وتشغيل الصوت عند الإرسال
+// 6. نموذج التواصل
 const contactForm = document.getElementById('contactForm');
 const successMessage = document.getElementById('success-message');
 const submitBtn = document.getElementById('submitBtn');
@@ -115,7 +133,6 @@ const successSound = document.getElementById('success-sound');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault(); 
-
         const originalBtnText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i> جاري الإرسال...';
         submitBtn.disabled = true;
@@ -129,9 +146,7 @@ if (contactForm) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                if (successSound) {
-                    successSound.play().catch(e => console.log('التشغيل التلقائي للصوت يتطلب تفاعل المستخدم'));
-                }
+                if (successSound) successSound.play().catch(e => {});
                 if (successMessage) successMessage.classList.remove('hidden');
                 contactForm.reset();
             } else {
@@ -146,4 +161,5 @@ if (contactForm) {
             submitBtn.disabled = false;
         });
     });
-}ء
+}
+
