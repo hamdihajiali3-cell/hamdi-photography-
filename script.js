@@ -59,7 +59,7 @@ if (closeChat) {
     closeChat.addEventListener('click', () => { 
         chatBox.classList.add('hidden'); 
         chatBox.classList.remove('flex'); 
-        chatToggle.classList.add('hidden'); 
+        chatToggle.classList.remove('hidden'); 
     });
 }
 
@@ -72,10 +72,10 @@ function addChatMessage(text, isUser) {
 }
 
 async function callGeminiAPI(userText) {
-    const apiKey = "AQ.Ab8RN6K0zI8DQPpAcHM8-yomCMbS0LyoL0__Z7gXxPDKAxYPnQ"; 
+    // المفتاح الجديد الخاص بك
+    const apiKey = "AQ.Ab8RN6I_uetUznJYjWl4B-gB-EZDU2F3HSmqFJ-hlJs4IMLBXQ"; 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     
-    // هنا جعلنا الذكاء الاصطناعي يمثل المصور حمدي ولكنه حر ومفتوح للإجابة على أي سؤال بذكاء واحترافية
     const prompt = `أنت مساعد ذكي شخصي وممثل رسمي لموقع المصور المحترف حمدي في غازي عنتاب. يمكنك الإجابة على أي سؤال يطرحه الزائر بحرية تامة وذكاء شامل (سواء عن أعمال حمدي في التصوير، البورتريه، التخرج، التلوين السينمائي، أو أي مواضيع عامة أخرى يطرحها المستخدم). كن ودوداً، ذكياً، ومرناً في إجاباتك. سؤال المستخدم: ${userText}`;
 
     try {
@@ -162,4 +162,3 @@ if (contactForm) {
         });
     });
 }
-
