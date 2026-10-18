@@ -25,56 +25,215 @@
 </head>
 <body class="antialiased">
 
-    <!-- شاشة الترحيب (Splash Screen) بالإضاءة -->
+    <!-- شاشة الترحيب (Splash Screen) -->
     <div id="splash-screen" class="fixed inset-0 bg-dark-900 z-[9999] flex flex-col items-center justify-center transition-opacity duration-1000">
         <h1 class="text-4xl md:text-6xl font-playfair font-bold gold-text-gradient tracking-widest animate-pulse mb-4 drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]">HAMDI PHOTOGRAPHY</h1>
         <div class="w-24 h-1 bg-gold-500 rounded-full animate-bounce shadow-[0_0_10px_rgba(212,175,55,0.8)]"></div>
     </div>
+
+    <!-- ملف الصوت المخفي -->
+    <audio id="success-sound" src="success.mp3" preload="auto"></audio>
 
     <!-- القائمة العلوية -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 top-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <a href="#" class="font-playfair text-2xl md:text-3xl font-bold tracking-widest text-gold-500 hover:text-gold-400">HAMDI PHOTOGRAPHY</a>
             <div class="hidden md:flex space-x-8 space-x-reverse">
-                <a href="#home" class="text-gray-300 hover:text-gold-500 font-semibold">الرئيسية</a>
-                <a href="#about" class="text-gray-300 hover:text-gold-500 font-semibold">من أنا</a>
-                <a href="#services" class="text-gray-300 hover:text-gold-500 font-semibold">خدماتي</a>
-                <a href="#contact" class="text-gray-300 hover:text-gold-500 font-semibold">تواصل معي</a>
+                <a href="#home" class="text-gray-300 hover:text-gold-500 font-semibold transition-colors">الرئيسية</a>
+                <a href="#about" class="text-gray-300 hover:text-gold-500 font-semibold transition-colors">من أنا</a>
+                <a href="#services" class="text-gray-300 hover:text-gold-500 font-semibold transition-colors">خدماتي</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-gold-500 font-semibold transition-colors">معرض الصور</a>
+                <a href="#contact" class="text-gray-300 hover:text-gold-500 font-semibold transition-colors">تواصل معي</a>
             </div>
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-btn" class="text-gold-500 focus:outline-none"><i class="fas fa-bars text-2xl"></i></button>
+            </div>
+        </div>
+        <!-- قائمة الهواتف -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-800 bg-opacity-95 absolute w-full top-full left-0 border-t border-dark-700 text-center py-4 space-y-2">
+            <a href="#home" class="block px-3 py-2 text-gray-300 hover:text-gold-500">الرئيسية</a>
+            <a href="#about" class="block px-3 py-2 text-gray-300 hover:text-gold-500">من أنا</a>
+            <a href="#services" class="block px-3 py-2 text-gray-300 hover:text-gold-500">خدماتي</a>
+            <a href="#portfolio" class="block px-3 py-2 text-gray-300 hover:text-gold-500">معرض الصور</a>
+            <a href="#contact" class="block px-3 py-2 text-gray-300 hover:text-gold-500">تواصل معي</a>
         </div>
     </nav>
 
-    <!-- الأقسام الأساسية (أضف أقسامك هنا كالسابق) -->
+    <!-- القسم الرئيسي (Hero Section) -->
     <section id="home" class="relative h-screen flex items-center justify-center">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover" />
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Camera Background" class="w-full h-full object-cover" />
             <div class="absolute inset-0 bg-black opacity-70"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
         </div>
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h2 class="text-gold-500 font-playfair tracking-widest text-sm md:text-lg uppercase mb-4">Capturing Moments, Creating Art</h2>
             <h1 class="text-5xl md:text-7xl font-bold font-playfair mb-6 gold-text-gradient uppercase leading-tight">HAMDI PHOTOGRAPHY</h1>
             <p class="text-lg md:text-2xl text-gray-300 mb-10 font-light">نحول لحظاتكم الثمينة إلى لوحات سينمائية خالدة</p>
+            <a href="#portfolio" class="inline-block border-2 border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-dark-900 font-bold py-3 px-8 rounded-full transition-all duration-300 uppercase tracking-wide">شاهد أعمالي</a>
         </div>
     </section>
 
-    <!-- واجهة المساعد الذكي المربوط بجيميني -->
+    <!-- قسم من أنا (About Section) -->
+    <section id="about" class="py-20 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1520390111184-ea8d2077e924?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Photographer" class="rounded-lg shadow-2xl border border-dark-700 p-2 opacity-90 hover:opacity-100 transition-opacity duration-300 w-full object-cover h-[400px]">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="text-gold-500 font-semibold tracking-wider uppercase mb-2">من أنا</h3>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">شغف بالعدسة وعشق للتفاصيل</h2>
+                    <p class="text-gray-400 leading-relaxed mb-6">أنا حمدي، مصور فوتوغرافي محترف أتواجد في غازي عنتاب. أؤمن بأن الصورة ليست مجرد لقطة، بل هي قصة تُروى بلا كلمات. أهتم بأدق التفاصيل لضمان خروج كل صورة كتحفة فنية تخلد ذكرياتكم الأبدية.</p>
+                    <p class="text-gray-400 leading-relaxed mb-8">أعتمد في عملي على معدات احترافية مع عدسة <strong>50mm</strong> وتطبيق <strong>التلوين السينمائي (Color Grading)</strong> لأمنح صوركم طابعاً درامياً وفاخراً يلامس القلوب.</p>
+                    <a href="#contact" class="inline-block bg-gold-500 text-dark-900 font-bold py-3 px-8 rounded hover:bg-gold-400 transition-colors">احجز جلستك الآن</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات (Services Section) -->
+    <section id="services" class="py-20 bg-dark-800 border-y border-dark-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-gold-500 font-semibold tracking-wider uppercase mb-2">ما أقدمه</h3>
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-white">خدمات التصوير الاحترافية</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-dark-900 p-8 rounded-lg border border-dark-700 hover:border-gold-500 transition-colors duration-300 group">
+                    <div class="w-16 h-16 mx-auto bg-dark-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold-500 transition-colors duration-300"><i class="fas fa-graduation-cap text-2xl text-gold-500 group-hover:text-dark-900"></i></div>
+                    <h4 class="text-xl font-bold mb-3 text-white">تصوير التخرّج</h4>
+                    <p class="text-gray-400 text-sm">توثيق لحظات نجاحك وتخرجك بأسلوب احترافي يبرز فرحة الإنجاز.</p>
+                </div>
+                <div class="bg-dark-900 p-8 rounded-lg border border-dark-700 hover:border-gold-500 transition-colors duration-300 group">
+                    <div class="w-16 h-16 mx-auto bg-dark-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold-500 transition-colors duration-300"><i class="fas fa-user text-2xl text-gold-500 group-hover:text-dark-900"></i></div>
+                    <h4 class="text-xl font-bold mb-3 text-white">البورتريه</h4>
+                    <p class="text-gray-400 text-sm">صور شخصية تبرز ملامحك وشخصيتك الحقيقية بعزل وعمق ميدان ساحر.</p>
+                </div>
+                <div class="bg-dark-900 p-8 rounded-lg border border-dark-700 hover:border-gold-500 transition-colors duration-300 group">
+                    <div class="w-16 h-16 mx-auto bg-dark-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold-500 transition-colors duration-300"><i class="fas fa-tree text-2xl text-gold-500 group-hover:text-dark-900"></i></div>
+                    <h4 class="text-xl font-bold mb-3 text-white">الجلسات الخارجية</h4>
+                    <p class="text-gray-400 text-sm">استغلال الإضاءة الطبيعية والمناظر الخلابة لإنتاج صور مفعمة بالحياة.</p>
+                </div>
+                <div class="bg-dark-900 p-8 rounded-lg border border-dark-700 hover:border-gold-500 transition-colors duration-300 group">
+                    <div class="w-16 h-16 mx-auto bg-dark-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold-500 transition-colors duration-300"><i class="fas fa-palette text-2xl text-gold-500 group-hover:text-dark-900"></i></div>
+                    <h4 class="text-xl font-bold mb-3 text-white">تعديل الألوان السينمائية</h4>
+                    <p class="text-gray-400 text-sm">لمسات احترافية (Color Grading) لإضافة طابع سينمائي وفني لصورك.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- معرض الصور (Portfolio Section) -->
+    <section id="portfolio" class="py-20 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-gold-500 font-semibold tracking-wider uppercase mb-2">أعمالي</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">معرض الصور</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">مجموعة مختارة من أعمالي السينمائية والفوتوغرافية.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="portfolio-item relative group aspect-[4/5] overflow-hidden rounded-lg"><img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portfolio 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center"><span class="text-gold-500 opacity-0 group-hover:opacity-100 font-bold text-xl transition-opacity duration-300">بورتريه</span></div></div>
+                <div class="portfolio-item relative group aspect-[4/5] overflow-hidden rounded-lg"><img src="https://images.unsplash.com/photo-1607004468138-e7e23ea26947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portfolio 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center"><span class="text-gold-500 opacity-0 group-hover:opacity-100 font-bold text-xl transition-opacity duration-300">خريجون</span></div></div>
+                <div class="portfolio-item relative group aspect-[4/5] overflow-hidden rounded-lg"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portfolio 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center"><span class="text-gold-500 opacity-0 group-hover:opacity-100 font-bold text-xl transition-opacity duration-300">جلسات خارجية</span></div></div>
+                <div class="portfolio-item relative group aspect-[4/5] overflow-hidden rounded-lg"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portfolio 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center"><span class="text-gold-500 opacity-0 group-hover:opacity-100 font-bold text-xl transition-opacity duration-300">ألوان سينمائية</span></div></div>
+                <div class="portfolio-item relative group aspect-[4/5] overflow-hidden rounded-lg"><img src="https://images.unsplash.com/photo-1528699633788-424224dc89b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portfolio 5" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center"><span class="text-gold-500 opacity-0 group-hover:opacity-100 font-bold text-xl transition-opacity duration-300">إضاءة درامية</span></div></div>
+                <div class="portfolio-item relative group aspect-[4/5] overflow-hidden rounded-lg"><img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portfolio 6" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center"><span class="text-gold-500 opacity-0 group-hover:opacity-100 font-bold text-xl transition-opacity duration-300">لقطات عفوية</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التواصل (Contact Section) -->
+    <section id="contact" class="py-20 bg-dark-800 border-t border-dark-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-gold-500 font-semibold tracking-wider uppercase mb-2">تواصل معي</h3>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">لنبني ذكرياتك معاً</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <div class="bg-dark-900 p-8 rounded-lg border border-dark-700 flex flex-col justify-center space-y-8 shadow-xl">
+                    <a href="tel:05377423671" class="flex items-center group">
+                        <div class="w-12 h-12 bg-dark-800 rounded-full flex items-center justify-center group-hover:bg-gold-500 transition-colors duration-300"><i class="fas fa-phone text-gold-500 group-hover:text-dark-900"></i></div>
+                        <div class="mr-4">
+                            <h4 class="text-gray-400 text-sm">رقم الهاتف</h4>
+                            <p class="text-white text-lg font-bold group-hover:text-gold-500 transition-colors dir-ltr">053 774 236 71</p>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/905377423671" target="_blank" class="flex items-center group">
+                        <div class="w-12 h-12 bg-dark-800 rounded-full flex items-center justify-center group-hover:bg-green-500 transition-colors duration-300"><i class="fab fa-whatsapp text-gold-500 group-hover:text-white text-xl"></i></div>
+                        <div class="mr-4">
+                            <h4 class="text-gray-400 text-sm">واتساب</h4>
+                            <p class="text-white text-lg font-bold group-hover:text-green-500 transition-colors dir-ltr">053 774 236 71</p>
+                        </div>
+                    </a>
+                    <a href="mailto:hamdihajiali76@gmail.com" class="flex items-center group">
+                        <div class="w-12 h-12 bg-dark-800 rounded-full flex items-center justify-center group-hover:bg-gold-500 transition-colors duration-300"><i class="fas fa-envelope text-gold-500 group-hover:text-dark-900"></i></div>
+                        <div class="mr-4">
+                            <h4 class="text-gray-400 text-sm">البريد الإلكتروني</h4>
+                            <p class="text-white text-lg font-bold group-hover:text-gold-500 transition-colors font-sans">hamdihajiali76@gmail.com</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="bg-dark-900 p-8 rounded-lg border border-dark-700 shadow-xl relative overflow-hidden">
+                    <div id="success-message" class="hidden absolute inset-0 bg-dark-900 flex flex-col items-center justify-center z-20 text-center px-4">
+                        <i class="fas fa-check-circle text-6xl text-gold-500 mb-4 drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]"></i>
+                        <h3 class="text-2xl font-bold text-white mb-2">تم الإرسال بنجاح!</h3>
+                        <p class="text-gray-400">لقد استلمت رسالتك وسأتواصل معك قريباً.</p>
+                        <button type="button" onclick="document.getElementById('success-message').classList.add('hidden')" class="mt-6 border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-dark-900 font-bold py-2 px-6 rounded transition-colors duration-300">إرسال طلب آخر</button>
+                    </div>
+                    <form id="contactForm">
+                        <div class="mb-4">
+                            <label class="block text-gray-400 text-sm mb-2" for="name">الاسم</label>
+                            <input name="name" class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors" id="name" type="text" placeholder="الاسم الكريم" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-400 text-sm mb-2" for="email">البريد الإلكتروني</label>
+                            <input name="email" class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors" id="email" type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-400 text-sm mb-2" for="service">نوع الجلسة</label>
+                            <select name="service" class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors" id="service">
+                                <option>تصوير تخرّج</option>
+                                <option>جلسة بورتريه</option>
+                                <option>جلسة تصوير خارجية</option>
+                                <option>أخرى</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-400 text-sm mb-2" for="message">الرسالة</label>
+                            <textarea name="message" class="w-full bg-dark-800 border border-dark-700 text-white rounded py-3 px-4 focus:outline-none focus:border-gold-500 transition-colors h-32 resize-none" id="message" placeholder="تفاصيل إضافية..." required></textarea>
+                        </div>
+                        <button id="submitBtn" class="w-full bg-gold-500 hover:bg-gold-400 text-dark-900 font-bold py-3 px-4 rounded transition-colors duration-300" type="submit">إرسال الطلب</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل (Footer) -->
+    <footer class="bg-dark-900 py-8 border-t border-dark-700">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-gold-500 font-playfair text-xl md:text-2xl font-bold mb-4">HAMDI PHOTOGRAPHY</h2>
+            <p class="text-gray-500 text-sm mb-4">© جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- المساعد الذكي -->
     <div id="ai-chat-widget" class="fixed bottom-6 left-6 z-50">
-        <div id="chat-box" class="hidden bg-dark-900 border border-gold-500 rounded-lg w-80 shadow-[0_0_20px_rgba(212,175,55,0.2)] overflow-hidden flex-col mb-4">
+        <div id="chat-box" class="hidden bg-dark-900 border border-gold-500 rounded-lg w-80 shadow-2xl overflow-hidden flex-col transition-all duration-300 mb-4 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
             <div class="bg-gold-500 text-dark-900 font-bold p-4 flex justify-between items-center">
                 <div class="flex items-center gap-2"><i class="fas fa-robot text-xl"></i><span>مساعد HAMDI الذكي</span></div>
-                <button id="close-chat" class="text-dark-900 hover:text-white"><i class="fas fa-times"></i></button>
+                <button id="close-chat" class="text-dark-900 hover:text-white transition"><i class="fas fa-times"></i></button>
             </div>
             <div id="chat-messages" class="p-4 h-64 overflow-y-auto flex flex-col gap-3 bg-dark-800 text-sm">
                 <div class="bg-dark-700 text-gray-200 p-3 rounded-lg rounded-tr-none self-start w-10/12 leading-relaxed border border-dark-600">
-                    مرحباً! أنا الذكاء الاصطناعي الخاص بالمصور حمدي. اسألني أي شيء عن الخدمات، المعدات، أو المواعيد.
+                    مرحباً! أنا الذكاء الاصطناعي الخاص بالمصور حمدي. كيف يمكنني مساعدتك؟
                 </div>
             </div>
             <div class="p-3 bg-dark-900 border-t border-dark-700 flex gap-2">
-                <input type="text" id="chat-input" placeholder="اكتب استفسارك..." class="flex-1 bg-dark-800 text-white px-3 py-2 rounded border border-dark-700 focus:border-gold-500 focus:outline-none">
-                <button id="send-chat" class="bg-gold-500 text-dark-900 px-4 py-2 rounded hover:bg-gold-400"><i class="fas fa-paper-plane"></i></button>
+                <input type="text" id="chat-input" placeholder="اكتب استفسارك..." class="flex-1 bg-dark-800 text-white px-3 py-2 rounded focus:outline-none focus:border-gold-500 border border-dark-700">
+                <button id="send-chat" class="bg-gold-500 text-dark-900 px-4 py-2 rounded hover:bg-gold-400 transition-colors"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
-        
-        <button id="chat-toggle" class="w-14 h-14 bg-gold-500 rounded-full shadow-[0_0_25px_rgba(212,175,55,0.7)] flex items-center justify-center text-dark-900 hover:bg-gold-400 hover:scale-110 transition-transform relative border-2 border-yellow-300">
+        <button id="chat-toggle" class="w-14 h-14 bg-gold-500 rounded-full shadow-[0_0_25px_rgba(212,175,55,0.7)] flex items-center justify-center text-dark-900 hover:bg-gold-400 transition-transform transform hover:scale-110 relative border-2 border-yellow-300">
             <i class="fas fa-comment-dots text-2xl"></i>
             <span class="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
             <span class="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border border-dark-900"></span>
