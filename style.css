@@ -1,52 +1,18 @@
-:root {
-    scroll-behavior: smooth;
-}
+:root { scroll-behavior: smooth; }
+body { background-color: #050505; color: #ffffff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
 
-body {
-    background-color: #050505;
-    color: #ffffff;
-    font-family: 'Cairo', sans-serif;
-    overflow-x: hidden;
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #FFD700; }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: #050505;
-}
-::-webkit-scrollbar-thumb {
-    background: #D4AF37;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #FFD700;
-}
-
-/* Gold Text Gradient */
 .gold-text-gradient {
     background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
-/* Image Hover Zoom Effect */
-.portfolio-item {
-    overflow: hidden;
-    border-radius: 0.5rem;
-}
-.portfolio-item img {
-    transition: transform 0.5s ease;
-}
-.portfolio-item:hover img {
-    transform: scale(1.1);
-}
+.scrolled-nav { background-color: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5); }
 
-/* Navbar Transition */
-.scrolled-nav {
-    background-color: rgba(5, 5, 5, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-}
+#chat-messages::-webkit-scrollbar { width: 5px; }
+#chat-messages::-webkit-scrollbar-thumb { background: #555; border-radius: 3px; }
+
