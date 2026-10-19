@@ -1,4 +1,4 @@
-// 1. إخفاء شاشة الترحيب بعد ثانية واحدة
+// 1. إخفاء شاشة الترحيب (Splash Screen) بعد ثانية واحدة
 window.addEventListener('load', () => {
     setTimeout(() => {
         const splash = document.getElementById('splash-screen');
@@ -9,20 +9,7 @@ window.addEventListener('load', () => {
     }, 1000); 
 });
 
-// 2. تفعيل المحرك الحركي ثلاثي الأبعاد (3D Tilt) على الصور والبطاقات لتعطي تأثير المواقع الحديثة
-document.addEventListener("DOMContentLoaded", () => {
-    if (typeof VanillaTilt !== 'undefined') {
-        VanillaTilt.init(document.querySelectorAll(".portfolio-item, .service-card"), {
-            max: 18,          // زاوية الميلان والتفاعل الفاخر
-            speed: 350,       // سرعة استجابة الحركة
-            glare: true,      // إضافة لمعان سينمائي متحرك
-            "max-glare": 0.3, // قوة اللمعان
-            scale: 1.04       // التقدم للأمام عند مرور الماوس
-        });
-    }
-});
-
-// 3. تظليل القائمة العلوية عند التمرير
+// 2. تظليل القائمة العلوية عند التمرير
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -32,7 +19,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 4. قائمة الهاتف المحمول
+// 3. قائمة الهاتف المحمول
 const btn = document.getElementById('mobile-menu-btn');
 const menu = document.getElementById('mobile-menu');
 if (btn && menu) {
@@ -46,13 +33,13 @@ if (btn && menu) {
     });
 }
 
-// 5. تحديث سنة التذييل تلقائياً
+// 4. تحديث سنة التذييل تلقائياً
 const yearSpan = document.getElementById('year');
 if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
-// 6. نموذج التواصل
+// 5. نموذج التواصل
 const contactForm = document.getElementById('contactForm');
 const successMessage = document.getElementById('success-message');
 const submitBtn = document.getElementById('submitBtn');
