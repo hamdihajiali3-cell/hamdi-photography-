@@ -1,20 +1,3 @@
-// توليد خلفية متحركة تفاعلية (Particles Animation)
-window.addEventListener('DOMContentLoaded', () => {
-    const bgContainer = document.getElementById('particle-bg');
-    if (bgContainer) {
-        for (let i = 0; i < 25; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'floating-particle';
-            const size = Math.random() * 6 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
-            particle.style.animationDelay = `${Math.random() * 5}s`;
-            bgContainer.appendChild(particle);
-        }
-    }
-});
 // 1. إخفاء شاشة الترحيب بعد ثانية واحدة
 window.addEventListener('load', () => {
     setTimeout(() => {
