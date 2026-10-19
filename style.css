@@ -29,30 +29,6 @@ body {
 }
 
 /* -------------------------------------------------- */
-/* خلفية رقمية متحركة فاخرة بديلة للفيديو (Pure CSS Animation) */
-/* -------------------------------------------------- */
-.animated-bg-container {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    z-index: 0;
-    background: radial-gradient(circle at center, #121212 0%, #050505 100%);
-}
-
-.floating-particle {
-    position: absolute;
-    background: rgba(212, 175, 55, 0.3);
-    border-radius: 50%;
-    animation: floatUp 8s infinite linear;
-}
-
-@keyframes floatUp {
-    0% { transform: translateY(100vh) scale(0); opacity: 0; }
-    50% { opacity: 0.8; }
-    100% { transform: translateY(-20vh) scale(1); opacity: 0; }
-}
-
-/* -------------------------------------------------- */
 /* تأثيرات ثلاثية الأبعاد وتقدم للأمام (3D & Pop Forward) */
 /* -------------------------------------------------- */
 .portfolio-item {
@@ -75,68 +51,7 @@ body {
     transform: scale(1.08);
 }
 
-/* رسوم متحركة داخل المتصفح */
-@keyframes browserFadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-section {
-    animation: browserFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}:root { 
-    scroll-behavior: smooth; 
-}
-
-body { 
-    background-color: #050505; 
-    color: #ffffff; 
-    font-family: 'Cairo', sans-serif; 
-    overflow-x: hidden; 
-}
-
-/* تخصيص شريط التمرير */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #050505; }
-::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #FFD700; }
-
-/* تدرج النص الذهبي الفاخر */
-.gold-text-gradient {
-    background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-
-/* تظليل القائمة العلوية */
-.scrolled-nav { 
-    background-color: rgba(5, 5, 5, 0.95); 
-    backdrop-filter: blur(10px); 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5); 
-}
-
-/* -------------------------------------------------- */
-/* تأثيرات ثلاثية الأبعاد وتقدم للأمام (3D & Pop Forward) */
-/* -------------------------------------------------- */
-.portfolio-item {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
-}
-
-.portfolio-item:hover {
-    transform: translateY(-10px) translateZ(40px) scale(1.03);
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
-    z-index: 10;
-}
-
-.portfolio-item img {
-    transition: transform 0.5s ease;
-}
-
-.portfolio-item:hover img {
-    transform: scale(1.08);
-}
-
-/* فيديو الخلفية المتحرك */
+/* حاوية فيديو الخلفية المتحرك للتصوير */
 .video-bg-container {
     position: absolute;
     top: 0;
@@ -151,7 +66,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.4) contrast(1.1);
+    filter: brightness(0.45) contrast(1.1);
 }
 
 /* رسوم متحركة داخل المتصفح */
@@ -163,4 +78,3 @@ body {
 section {
     animation: browserFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
