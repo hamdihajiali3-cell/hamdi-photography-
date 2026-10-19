@@ -39,7 +39,7 @@ if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
-// 5. نموذج التواصل
+// 5. نموذج التواصل - مع الحل الذكي للتعليق والتفعيل
 const contactForm = document.getElementById('contactForm');
 const successMessage = document.getElementById('success-message');
 const submitBtn = document.getElementById('submitBtn');
@@ -58,22 +58,27 @@ if (contactForm) {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            // إذا كان الإيميل غير مفعل بعد، سيفشل الطلب المخفي هنا
+            if (!response.ok) throw new Error("Needs Activation");
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
-                if (successSound) successSound.play().catch(e => {});
+                // نجاح الإرسال الفاخر المخفي
+                if (successSound) successSound.play().catch(err => {});
                 if (successMessage) successMessage.classList.remove('hidden');
                 contactForm.reset();
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
             } else {
-                alert('عذراً، حدثت مشكلة أثناء الإرسال.');
+                throw new Error('Form Error');
             }
         })
         .catch(error => {
-            alert('تأكد من اتصالك بالإنترنت وحاول مجدداً.');
-        })
-        .finally(() => {
-            submitBtn.innerHTML = originalBtnText;
-            submitBtn.disabled = false;
+            // الحل الذكي: التحويل التلقائي للإرسال العادي لتظهر لك صفحة تفعيل الإيميل
+            contactForm.action = "https://formsubmit.co/hamdihajiali76@gmail.com";
+            contactForm.submit();
         });
     });
 }
