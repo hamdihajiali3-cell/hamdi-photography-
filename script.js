@@ -1,11 +1,4 @@
-// تفعيل الـ 3D على صور المعرض
-VanillaTilt.init(document.querySelectorAll(".portfolio-item"), {
-    max: 15,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.2,
-});
-// 1. إخفاء شاشة الترحيب (Splash Screen) بعد ثانية واحدة فقط
+// 1. إخفاء شاشة الترحيب بعد ثانية واحدة
 window.addEventListener('load', () => {
     setTimeout(() => {
         const splash = document.getElementById('splash-screen');
@@ -13,16 +6,16 @@ window.addEventListener('load', () => {
             splash.style.opacity = '0';
             setTimeout(() => splash.style.display = 'none', 500); 
         }
-    }, 1000); // 1000 تعني ثانية واحدة
+    }, 1000); 
 });
 
 // 2. تظليل القائمة العلوية عند التمرير
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        navbar.classList.add('bg-dark-900', 'bg-opacity-95', 'shadow-lg');
+        navbar.classList.add('scrolled-nav');
     } else {
-        navbar.classList.remove('bg-dark-900', 'bg-opacity-95', 'shadow-lg');
+        navbar.classList.remove('scrolled-nav');
     }
 });
 
@@ -46,7 +39,7 @@ if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
-// 5. نموذج التواصل وتشغيل الصوت عند الإرسال
+// 5. نموذج التواصل
 const contactForm = document.getElementById('contactForm');
 const successMessage = document.getElementById('success-message');
 const submitBtn = document.getElementById('submitBtn');
@@ -84,4 +77,3 @@ if (contactForm) {
         });
     });
 }
-
