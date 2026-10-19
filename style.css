@@ -1,4 +1,15 @@
-:root { 
+/* تأثيرات ثلاثية الأبعاد فاخرة (3D Effect) */
+.portfolio-item, service-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* تأثير العمق والبروز للعناصر عند مرور الماوس */
+.portfolio-item img {
+    transition: transform 0.3s ease;
+    transform: translateZ(20px);
+
+}:root { 
     scroll-behavior: smooth; 
 }
 
@@ -9,7 +20,6 @@ body {
     overflow-x: hidden; 
 }
 
-/* تخصيص شريط التمرير (Scrollbar) بلون ذهبي فخم */
 ::-webkit-scrollbar { 
     width: 8px; 
 }
@@ -24,7 +34,6 @@ body {
     background: #FFD700; 
 }
 
-/* تدرج النص الذهبي الفاخر */
 .gold-text-gradient {
     background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
     -webkit-background-clip: text; 
@@ -32,21 +41,11 @@ body {
     color: transparent;
 }
 
-/* تأثيرات حركية فاخرة (Animations) */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+#chat-messages::-webkit-scrollbar { 
+    width: 5px; 
+}
+#chat-messages::-webkit-scrollbar-thumb { 
+    background: #555; 
+    border-radius: 3px; 
 }
 
-.fade-in {
-    animation: fadeIn 1s ease-out forwards;
-}
-
-/* تأثير تكبير ناعم للصور عند المرور عليها */
-.portfolio-item img {
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.portfolio-item:hover img {
-    transform: scale(1.05);
-}
