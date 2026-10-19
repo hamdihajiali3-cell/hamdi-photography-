@@ -1,3 +1,10 @@
+// تفعيل الـ 3D على صور المعرض
+VanillaTilt.init(document.querySelectorAll(".portfolio-item"), {
+    max: 15,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+});
 // 1. إخفاء شاشة الترحيب (Splash Screen) بعد ثانية واحدة فقط
 window.addEventListener('load', () => {
     setTimeout(() => {
