@@ -1,15 +1,4 @@
-/* تأثيرات ثلاثية الأبعاد فاخرة (3D Effect) */
-.portfolio-item, service-card {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-
-/* تأثير العمق والبروز للعناصر عند مرور الماوس */
-.portfolio-item img {
-    transition: transform 0.3s ease;
-    transform: translateZ(20px);
-
-}:root { 
+:root { 
     scroll-behavior: smooth; 
 }
 
@@ -20,6 +9,7 @@ body {
     overflow-x: hidden; 
 }
 
+/* تخصيص شريط التمرير */
 ::-webkit-scrollbar { 
     width: 8px; 
 }
@@ -34,6 +24,7 @@ body {
     background: #FFD700; 
 }
 
+/* تدرج النص الذهبي الفاخر */
 .gold-text-gradient {
     background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
     -webkit-background-clip: text; 
@@ -41,6 +32,14 @@ body {
     color: transparent;
 }
 
+/* تظليل القائمة العلوية */
+.scrolled-nav { 
+    background-color: rgba(5, 5, 5, 0.95); 
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5); 
+}
+
+/* تخصيص شريط رسائل الماتشات القديم إن وجد */
 #chat-messages::-webkit-scrollbar { 
     width: 5px; 
 }
@@ -49,3 +48,22 @@ body {
     border-radius: 3px; 
 }
 
+/* تأثيرات حركية وثلاثية الأبعاد فاخرة (3D Effect) */
+.portfolio-item, .service-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.portfolio-item img {
+    transition: transform 0.3s ease;
+    transform: translateZ(20px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
