@@ -9,20 +9,7 @@ window.addEventListener('load', () => {
     }, 1000); 
 });
 
-// 2. تفعيل التفاعل الحركي ثلاثي الأبعاد (3D Tilt) على صور المعرض والخدمات
-document.addEventListener("DOMContentLoaded", () => {
-    if (typeof VanillaTilt !== 'undefined') {
-        VanillaTilt.init(document.querySelectorAll(".portfolio-item, .service-card"), {
-            max: 15,          // زاوية الميلان
-            speed: 400,       // سرعة الاستجابة
-            glare: true,      // تأثير الإضاءة الساطعة الفاخرة
-            "max-glare": 0.2, // نسبة اللمعان
-            scale: 1.05       // التقدّم للأمام قليلاً
-        });
-    }
-});
-
-// 3. تظليل القائمة العلوية عند التمرير
+// 2. تظليل القائمة العلوية عند التمرير
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -32,7 +19,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 4. قائمة الهاتف المحمول
+// 3. قائمة الهاتف المحمول
 const btn = document.getElementById('mobile-menu-btn');
 const menu = document.getElementById('mobile-menu');
 if (btn && menu) {
@@ -46,13 +33,13 @@ if (btn && menu) {
     });
 }
 
-// 5. تحديث سنة التذييل تلقائياً
+// 4. تحديث سنة التذييل
 const yearSpan = document.getElementById('year');
 if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
-// 6. نموذج التواصل
+// 5. نموذج التواصل
 const contactForm = document.getElementById('contactForm');
 const successMessage = document.getElementById('success-message');
 const submitBtn = document.getElementById('submitBtn');
