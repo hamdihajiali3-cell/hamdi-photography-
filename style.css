@@ -24,7 +24,7 @@ body {
     background: #FFD700; 
 }
 
-/* تدرج النص الذهبي الفاخر */
+/* تدرج النص الذهبي الفاخر مع نبض خفيف */
 .gold-text-gradient {
     background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
     -webkit-background-clip: text; 
@@ -39,31 +39,62 @@ body {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5); 
 }
 
-/* تخصيص شريط رسائل الماتشات القديم إن وجد */
-#chat-messages::-webkit-scrollbar { 
-    width: 5px; 
-}
-#chat-messages::-webkit-scrollbar-thumb { 
-    background: #555; 
-    border-radius: 3px; 
-}
-
-/* تأثيرات حركية وثلاثية الأبعاد فاخرة (3D Effect) */
-.portfolio-item, .service-card {
+/* -------------------------------------------------- */
+/* تأثيرات ثلاثية الأبعاد وتقدم للعام (3D & Pop Forward) */
+/* -------------------------------------------------- */
+.portfolio-item, service-card {
     transform-style: preserve-3d;
     perspective: 1000px;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+}
+
+/* عندما يمرر المستخدم الماوس، تتقدم الصورة للأمام وتبرز بوضوح */
+.portfolio-item:hover {
+    transform: translateY(-10px) translateZ(40px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+    z-index: 10;
 }
 
 .portfolio-item img {
-    transition: transform 0.3s ease;
-    transform: translateZ(20px);
+    transition: transform 0.5s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.portfolio-item:hover img {
+    transform: scale(1.08);
 }
 
-.fade-in {
-    animation: fadeIn 1s ease-out forwards;
+/* -------------------------------------------------- */
+/* رسوم متحركة داخل المتصفح (Browser Animations) */
+/* -------------------------------------------------- */
+@keyframes floatAnimation {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+    100% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+}
+
+/* تطبيق الحركة الانسيابية على الأزرار والبطاقات */
+a.inline-block, button {
+    animation: pulseGlow 4s infinite ease-in-out;
+}
+
+/* حركة ظهور العناصر بسلاسة عند فتح الصفحة */
+@keyframes browserFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(25px) scale(0.98); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+section {
+    animation: browserFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
